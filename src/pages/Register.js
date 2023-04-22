@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import LottieView from "lottie-react-native";
 import { Image } from "react-native";
 import AXIOS from "../api/axios-config";
 import * as Location from "expo-location";
