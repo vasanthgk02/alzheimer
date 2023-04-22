@@ -12,7 +12,6 @@ export default function Monitor() {
   const [region, setRegion] = useState(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [radius, setRadius] = useState(25);
-  const [getLocation, setGetLocation] = useState([]);
   const [points, setPoints] = useState([]);
   const [sound, setSound] = useState();
   const [color, setColor] = useState({
@@ -22,8 +21,8 @@ export default function Monitor() {
   useEffect(() => {
     return sound
       ? () => {
-          sound.unloadAsync();
-        }
+        sound.unloadAsync();
+      }
       : undefined;
   }, [sound]);
 
@@ -45,9 +44,9 @@ export default function Monitor() {
     const a =
       Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2) +
       Math.cos(phi1) *
-        Math.cos(phi2) *
-        Math.sin(deltaLambda / 2) *
-        Math.sin(deltaLambda / 2);
+      Math.cos(phi2) *
+      Math.sin(deltaLambda / 2) *
+      Math.sin(deltaLambda / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
     const distance = R * c;
@@ -149,6 +148,7 @@ export default function Monitor() {
           <MapView style={styles.map} region={region} onLayout={onMapLayout}>
             {mapLoaded && markerLocation && (
               <>
+                {console.log(markerLocation)}
                 <Marker
                   coordinate={markerLocation}
                   title={"Your Location"}
@@ -168,8 +168,8 @@ export default function Monitor() {
                         latitude: data.lat,
                         longitude: data.long,
                       }}
-                      title={"Your Location"}
-                      description="You are here"
+                      title={data.name}
+                      description={data.email}
                     />
                   );
                 })}
